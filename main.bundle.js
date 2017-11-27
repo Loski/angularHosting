@@ -1,4 +1,4 @@
-webpackJsonp(["main"],{
+﻿webpackJsonp(["main"],{
 
 /***/ "../../../../../src/$$_lazy_route_resource lazy recursive":
 /***/ (function(module, exports) {
@@ -132,7 +132,7 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_https__ = __webpack_require__("../../../common/esm5/https.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__user_user_component__ = __webpack_require__("../../../../../src/app/user/user.component.ts");
@@ -202,7 +202,7 @@ var AppModule = (function () {
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["c" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_3__angular_common_https__["c" /* httpsClientModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_8__app_routing_module__["a" /* AppRoutingModule */],
                 __WEBPACK_IMPORTED_MODULE_12_angular_bootstrap_md__["a" /* MDBBootstrapModule */].forRoot(),
@@ -544,7 +544,7 @@ var BetsFormComponent = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BetsService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_https__ = __webpack_require__("../../../common/esm5/https.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__("../../../../rxjs/_esm5/operators/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -560,30 +560,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var httpOptions = {
-    headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpHeaders */]({ 'Content-Type': 'application/json' })
+var httpsOptions = {
+    headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_https__["d" /* httpsHeaders */]({ 'Content-Type': 'application/json' })
 };
 var BetsService = (function () {
-    function BetsService(http) {
-        this.http = http;
-        this.betsURL = 'http://178.62.38.160:8080/api/users/'; // URL to web api
-        this.betsGeneralURL = 'http://178.62.38.160:8080/api/bets'; // URL to web api
+    function BetsService(https) {
+        this.https = https;
+        this.betsURL = 'https://178.62.38.160:8080/api/users/'; // URL to web api
+        this.betsGeneralURL = 'https://178.62.38.160:8080/api/bets'; // URL to web api
         this.endURL = '/bets';
     }
     /** GET Bets from the server */
     BetsService.prototype.getBets = function (idUser) {
-        return this.http.get(this.betsURL + idUser + this.endURL)
+        return this.https.get(this.betsURL + idUser + this.endURL)
             .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('getBets', [])));
     };
     /** GET user by id. Will 404 if id not found */
     BetsService.prototype.getBetByUser = function (id, state) {
         var url = "" + this.betsURL + id + "/bets?stateBet=" + state;
-        return this.http.get(url);
+        return this.https.get(url);
     };
     /** GET Bet by id. Return `undefined` when id not found */
     BetsService.prototype.getBetNo404 = function (id) {
         var url = this.betsURL + "/?id=" + id;
-        return this.http.get(url)
+        return this.https.get(url)
             .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["b" /* map */])(function (Bets) { return Bets[0]; }), // returns a {0|1} element array
         Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (h) {
             var outcome = h ? "fetched" : "did not find";
@@ -592,42 +592,42 @@ var BetsService = (function () {
     /** GET Bet by id. Will 404 if id not found */
     BetsService.prototype.getBet = function (idUser, idBet) {
         var url = this.betsURL + idUser + this.endURL + "/" + idBet;
-        return this.http.get(url).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError("getBet id=" + idBet)));
+        return this.https.get(url).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError("getBet id=" + idBet)));
     };
     /** GET Bet by id. Will 404 if id not found */
     BetsService.prototype.getBetByState = function (state) {
         var url = this.betsGeneralURL + "?stateBet=" + state;
-        return this.http.get(url).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError("getBet state=" + state)));
+        return this.https.get(url).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError("getBet state=" + state)));
     };
     //////// Save methods //////////
     /** POST: add a new Bet to the server */
     BetsService.prototype.addBet = function (Bet, idUser) {
-        return this.http.post(this.betsURL + idUser + this.endURL, Bet, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('addBet')));
+        return this.https.post(this.betsURL + idUser + this.endURL, Bet, httpsOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('addBet')));
     };
     BetsService.prototype.join = function (id_bet, idCard, idUser) {
         var url = this.betsURL + idUser + this.endURL + "/" + id_bet + "?card=" + idCard;
-        return this.http.post(url, null).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('putBet')));
+        return this.https.post(url, null).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('putBet')));
     };
     BetsService.prototype.accept = function (id_bet, idUser, accept) {
         var url = this.betsURL + idUser + this.endURL + "/" + id_bet + "?accept=" + accept;
-        return this.http.put(url, null).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('putBet')));
+        return this.https.put(url, null).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('putBet')));
     };
     /** DELETE: delete the Bet from the server
     deleteBet(bet: Bet): Observable<Bet> {
       const id = bet.idBet;
       const url = `${this.betsURL}/${id}`;
   
-      return this.http.delete<Bet>(url, httpOptions).pipe(
+      return this.https.delete<Bet>(url, httpsOptions).pipe(
         catchError(this.handleError<Bet>('deleteBet'))
       );
     }
     */
     /** PUT: update the Bet on the server */
     BetsService.prototype.updateBet = function (Bet) {
-        return this.http.put(this.betsURL, Bet, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('updateBet')));
+        return this.https.put(this.betsURL, Bet, httpsOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('updateBet')));
     };
     /**
-     * Handle Http operation that failed.
+     * Handle https operation that failed.
      * Let the app continue.
      * @param operation - name of the operation that failed
      * @param result - optional value to return as the observable result
@@ -642,11 +642,11 @@ var BetsService = (function () {
         };
     };
     BetsService.prototype.deleteBet = function (bet, idUser) {
-        return this.http.delete(this.betsURL + idUser + this.endURL + '/' + bet.idBet, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('deleteBet')));
+        return this.https.delete(this.betsURL + idUser + this.endURL + '/' + bet.idBet, httpsOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('deleteBet')));
     };
     BetsService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_https__["b" /* httpsClient */]])
     ], BetsService);
     return BetsService;
 }());
@@ -795,7 +795,7 @@ module.exports = "<h1>{{user?.pseudo}}</h1>\r\n  <hr class=\"mt-4\">\r\n  <h2>Lo
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__("../../../common/esm5/common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_user_service__ = __webpack_require__("../../../../../src/app/user/user.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_https__ = __webpack_require__("../../../common/esm5/https.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -811,11 +811,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var DashboardComponent = (function () {
-    function DashboardComponent(route, userService, location, http) {
+    function DashboardComponent(route, userService, location, https) {
         this.route = route;
         this.userService = userService;
         this.location = location;
-        this.http = http;
+        this.https = https;
         this.lat = 51.678418;
         this.lng = 7.809007;
     }
@@ -838,7 +838,7 @@ var DashboardComponent = (function () {
     };
     DashboardComponent.prototype.getLocation = function () {
         var _this = this;
-        this.http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + this.user.adress + " " + this.user.city + '&key=AIzaSyD35gECOo2q6bowKrjlIMjgMSgMNxEUkDk').subscribe(function (data) { return _this.infoLocation(data); });
+        this.https.get('httpss://maps.googleapis.com/maps/api/geocode/json?address=' + this.user.adress + " " + this.user.city + '&key=AIzaSyD35gECOo2q6bowKrjlIMjgMSgMNxEUkDk').subscribe(function (data) { return _this.infoLocation(data); });
     };
     DashboardComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -849,7 +849,7 @@ var DashboardComponent = (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
             __WEBPACK_IMPORTED_MODULE_3__user_user_service__["a" /* UserService */],
             __WEBPACK_IMPORTED_MODULE_2__angular_common__["f" /* Location */],
-            __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["b" /* HttpClient */]])
+            __WEBPACK_IMPORTED_MODULE_4__angular_common_https__["b" /* httpsClient */]])
     ], DashboardComponent);
     return DashboardComponent;
 }());
@@ -934,7 +934,7 @@ var CardComponent = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CardService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_https__ = __webpack_require__("../../../common/esm5/https.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__("../../../../rxjs/_esm5/operators/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -950,23 +950,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var httpOptions = {
-    headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpHeaders */]({ 'Content-Type': 'application/json' })
+var httpsOptions = {
+    headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_https__["d" /* httpsHeaders */]({ 'Content-Type': 'application/json' })
 };
 var CardService = (function () {
-    function CardService(http) {
-        this.http = http;
-        this.cardsURL = 'http://localhost:8080/DAR/cards'; // URL to web api
+    function CardService(https) {
+        this.https = https;
+        this.cardsURL = 'https://localhost:8080/DAR/cards'; // URL to web api
     }
     /** GET cards from the server */
     CardService.prototype.getCards = function () {
-        return this.http.get(this.cardsURL)
+        return this.https.get(this.cardsURL)
             .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('getCards', [])));
     };
     /** GET card by id. Return `undefined` when id not found */
     CardService.prototype.getCardNo404 = function (id) {
         var url = this.cardsURL + "/?id=" + id;
-        return this.http.get(url)
+        return this.https.get(url)
             .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["b" /* map */])(function (cards) { return cards[0]; }), // returns a {0|1} element array
         Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (h) {
             var outcome = h ? "fetched" : "did not find";
@@ -975,14 +975,14 @@ var CardService = (function () {
     /** GET card by id. Will 404 if id not found */
     CardService.prototype.getCard = function (id) {
         var url = this.cardsURL + "/" + id;
-        return this.http.get(url).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError("getCard id=" + id)));
+        return this.https.get(url).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError("getCard id=" + id)));
     };
     /** PUT: update the card on the server */
     CardService.prototype.updateCard = function (card) {
-        return this.http.put(this.cardsURL, card, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('updateCard')));
+        return this.https.put(this.cardsURL, card, httpsOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('updateCard')));
     };
     /**
-     * Handle Http operation that failed.
+     * Handle https operation that failed.
      * Let the app continue.
      * @param operation - name of the operation that failed
      * @param result - optional value to return as the observable result
@@ -998,7 +998,7 @@ var CardService = (function () {
     };
     CardService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_https__["b" /* httpsClient */]])
     ], CardService);
     return CardService;
 }());
@@ -1104,7 +1104,7 @@ var DeckComponent = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DeckService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_https__ = __webpack_require__("../../../common/esm5/https.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__("../../../../rxjs/_esm5/operators/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1120,18 +1120,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var httpOptions = {
-    headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpHeaders */]({ 'Content-Type': 'application/json' })
+var httpsOptions = {
+    headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_https__["d" /* httpsHeaders */]({ 'Content-Type': 'application/json' })
 };
 var DeckService = (function () {
-    function DeckService(http) {
-        this.http = http;
-        this.decksURL = 'http://178.62.38.160:8080/api/users'; // URL to web api
+    function DeckService(https) {
+        this.https = https;
+        this.decksURL = 'https://178.62.38.160:8080/api/users'; // URL to web api
     }
     /** GET deck by id. Return `undefined` when id not found */
     DeckService.prototype.getDeckNo404 = function (id) {
         var url = this.decksURL + "/?id=" + id + "/decks";
-        return this.http.get(url)
+        return this.https.get(url)
             .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["b" /* map */])(function (decks) { return decks[0]; }), // returns a {0|1} element array
         Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (h) {
             var outcome = h ? "fetched" : "did not find";
@@ -1140,10 +1140,10 @@ var DeckService = (function () {
     /** GET deck by user id. Will 404 if id not found */
     DeckService.prototype.getDeck = function (id) {
         var url = this.decksURL + "/" + id + "/decks";
-        return this.http.get(url).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError("getDeck id=" + id)));
+        return this.https.get(url).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError("getDeck id=" + id)));
     };
     /**
-     * Handle Http operation that failed.
+     * Handle https operation that failed.
      * Let the app continue.
      * @param operation - name of the operation that failed
      * @param result - optional value to return as the observable result
@@ -1159,7 +1159,7 @@ var DeckService = (function () {
     };
     DeckService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_https__["b" /* httpsClient */]])
     ], DeckService);
     return DeckService;
 }());
@@ -1258,7 +1258,7 @@ var EncountersComponent = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EncountersService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_https__ = __webpack_require__("../../../common/esm5/https.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__("../../../../rxjs/_esm5/operators/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1274,25 +1274,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var httpOptions = {
-    headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpHeaders */]({ 'Content-Type': 'application/json' })
+var httpsOptions = {
+    headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_https__["d" /* httpsHeaders */]({ 'Content-Type': 'application/json' })
 };
 var EncountersService = (function () {
-    function EncountersService(http) {
-        this.http = http;
-        this.encountersURL = 'http://178.62.38.160:8080/api/encounters'; // URL to web api
+    function EncountersService(https) {
+        this.https = https;
+        this.encountersURL = 'https://178.62.38.160:8080/api/encounters'; // URL to web api
     }
     /** GET users from the server */
     EncountersService.prototype.getEncounters = function () {
-        return this.http.get(this.encountersURL)
+        return this.https.get(this.encountersURL)
             .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('getEncounters', [])));
     };
     EncountersService.prototype.getEncountersScheduled = function () {
-        return this.http.get(this.encountersURL + "/scheduled")
+        return this.https.get(this.encountersURL + "/scheduled")
             .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('getEncounters', [])));
     };
     /**
-   * Handle Http operation that failed.
+   * Handle https operation that failed.
    * Let the app continue.
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
@@ -1308,7 +1308,7 @@ var EncountersService = (function () {
     };
     EncountersService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_https__["b" /* httpsClient */]])
     ], EncountersService);
     return EncountersService;
 }());
@@ -1722,7 +1722,7 @@ var UserComponent = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_https__ = __webpack_require__("../../../common/esm5/https.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__("../../../../rxjs/_esm5/operators/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1738,24 +1738,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var httpOptions = {
-    headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpHeaders */]({ 'Content-Type': 'application/json' })
+var httpsOptions = {
+    headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_https__["d" /* httpsHeaders */]({ 'Content-Type': 'application/json' })
 };
 var UserService = (function () {
-    function UserService(http) {
-        this.http = http;
-        this.usersURL = 'http://178.62.38.160:8080/api/users'; // URL to web api
-        this.authURL = 'http://178.62.38.160:8080/api/auth'; // URL to auth
+    function UserService(https) {
+        this.https = https;
+        this.usersURL = 'https://178.62.38.160:8080/api/users'; // URL to web api
+        this.authURL = 'https://178.62.38.160:8080/api/auth'; // URL to auth
     }
     /** GET users from the server */
     UserService.prototype.getUsers = function () {
-        return this.http.get(this.usersURL)
+        return this.https.get(this.usersURL)
             .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('getUsers', [])));
     };
     /** GET user by id. Return `undefined` when id not found */
     UserService.prototype.getUserNo404 = function (id) {
         var url = this.usersURL + "/?id=" + id;
-        return this.http.get(url)
+        return this.https.get(url)
             .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["b" /* map */])(function (users) { return users[0]; }), // returns a {0|1} element array
         Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (h) {
             var outcome = h ? "fetched" : "did not find";
@@ -1764,32 +1764,32 @@ var UserService = (function () {
     /** GET user by id. Will 404 if id not found */
     UserService.prototype.getUser = function (id) {
         var url = this.usersURL + "/" + id;
-        return this.http.get(url).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError("getUser id=" + id)));
+        return this.https.get(url).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError("getUser id=" + id)));
     };
     //////// Save methods //////////
     /** POST: add a new user to the server */
     UserService.prototype.addUser = function (user) {
-        return this.http.post(this.usersURL, user, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('addUser')));
+        return this.https.post(this.usersURL, user, httpsOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('addUser')));
     };
     UserService.prototype.connexionUser = function (user) {
         console.log("je test l'envoi");
-        var httpOptionsConnexion = {
-            headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpHeaders */]({ 'Content-Type': 'application/x-www-form-urlencoded' })
+        var httpsOptionsConnexion = {
+            headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_https__["d" /* httpsHeaders */]({ 'Content-Type': 'application/x-www-form-urlencoded' })
         };
-        return this.http.post(this.authURL, "pseudo=" + user.pseudo + "&password=" + user.password, httpOptionsConnexion).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('connexionUser')));
+        return this.https.post(this.authURL, "pseudo=" + user.pseudo + "&password=" + user.password, httpsOptionsConnexion).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('connexionUser')));
     };
     /** DELETE: delete the user from the server */
     UserService.prototype.deleteUser = function (user) {
         var id = typeof user === 'number' ? user : user.idUser;
         var url = this.usersURL + "/" + id;
-        return this.http.delete(url, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('deleteUser')));
+        return this.https.delete(url, httpsOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('deleteUser')));
     };
     /** PUT: update the user on the server */
     UserService.prototype.updateUser = function (user) {
-        return this.http.put(this.usersURL, user, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('updateUser')));
+        return this.https.put(this.usersURL, user, httpsOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('updateUser')));
     };
     /**
-     * Handle Http operation that failed.
+     * Handle https operation that failed.
      * Let the app continue.
      * @param operation - name of the operation that failed
      * @param result - optional value to return as the observable result
@@ -1805,7 +1805,7 @@ var UserService = (function () {
     };
     UserService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_https__["b" /* httpsClient */]])
     ], UserService);
     return UserService;
 }());
